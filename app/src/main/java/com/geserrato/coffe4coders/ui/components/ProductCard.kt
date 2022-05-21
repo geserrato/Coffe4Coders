@@ -20,11 +20,11 @@ import com.geserrato.coffe4coders.ui.theme.Coffee4CodersTheme
 import com.geserrato.coffe4coders.ui.theme.PlatziBlue
 import com.geserrato.coffe4coders.ui.theme.PlatziGreen
 
-enum class CountryISO(val iso: String) {
-    COL("COL"),
-    BRA("BRA"),
-    CRI("CRI"),
-    NIC("NIC");
+enum class CountryISO {
+    COL,
+    BRA,
+    CRI,
+    NIC;
 
     fun getBackgroundImage(): Int {
         return when (this) {
@@ -52,19 +52,24 @@ enum class CountryISO(val iso: String) {
     }
 }
 
+typealias SelectionAction = () -> Unit
+
 @Composable
 fun ProductCard(
     name: String,
     summary: String,
     price: Double,
     currency: String,
-    country: CountryISO
+    country: CountryISO,
+    selected: SelectionAction
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .clickable { }
+            .clickable {
+                selected()
+            }
             .size(480.dp),
         elevation = 10.dp,
         shape = MaterialTheme.shapes.small
@@ -109,11 +114,12 @@ fun ProductCard(
 @Composable
 fun ProductCardPreview() {
     Coffee4CodersTheme() {
-        ProductCard("Café de Brasil",
+        ProductCard(
+            "Café de Brasil",
             "Cafe de origen de las montañas",
             40.0,
             "USD",
             CountryISO.BRA
-            )
+        ) {}
     }
 }
