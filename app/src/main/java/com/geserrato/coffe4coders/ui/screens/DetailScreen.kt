@@ -1,16 +1,23 @@
 package com.geserrato.coffe4coders.ui.screens
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.geserrato.coffe4coders.ui.components.CountryISO
 
 @Composable
-fun DetailScreen(navController: NavController) {
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DetailScreenPreview() {
-
+fun DetailScreen(navController: NavController, countryISO: CountryISO) {
+    Column() {
+        Text("Soy un producto de: ${countryISO.iso}", style = MaterialTheme.typography.h3)
+        Button(onClick = {
+            navController.navigate("feed"){
+                popUpTo("feed")
+            }
+        }) {
+            Text(text = "Volver")
+        }
+    }
 }

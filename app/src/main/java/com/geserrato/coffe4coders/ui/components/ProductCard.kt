@@ -20,11 +20,11 @@ import com.geserrato.coffe4coders.ui.theme.Coffee4CodersTheme
 import com.geserrato.coffe4coders.ui.theme.PlatziBlue
 import com.geserrato.coffe4coders.ui.theme.PlatziGreen
 
-enum class CountryISO {
-    COL,
-    BRA,
-    CRI,
-    NIC;
+enum class CountryISO(val iso: String) {
+    COL("COL"),
+    BRA("BRA"),
+    CRI("CRI"),
+    NIC("NIC");
 
     fun getBackgroundImage(): Int {
         return when (this) {
